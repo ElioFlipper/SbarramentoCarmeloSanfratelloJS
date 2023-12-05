@@ -5,15 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <p class = "a"></p>
+    <p class = "b"></p>
     <ul>
-        <li></li>
+
     </ul>
 </head>
 
 <body>
     <script>
-        const p = document.querySelector("p")
-        const ul = document.querySelector("li")
+        const p1 = document.querySelector(".a")
+        const p2 = document.querySelector(".b")
+        const ul = document.querySelector("ul")
         async function getName() {
             const bulbasaur = "bulbasaur"
             const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${bulbasaur}`)
@@ -25,15 +28,19 @@
                 abilities: data.abilities,
             }
     
+            let li
             pokemonObj.abilities.forEach((el) =>{
                 if(el.is_hidden == false) {
                     console.log(el)
+                    li  = `<li>${el.ability.name} ${el.ability.url}</li>`
+                    ul.innerHTML = li
                 } else {
-                    console.err("is_hidden is true")
+                    console.log("is_hidden is true")
                 }
-            })  
+                p1.innerHTML = data.name
+                p2.innerHTML = data.base_experience
 
-            let p 
+            })  
         }
         getName()
     </script>
