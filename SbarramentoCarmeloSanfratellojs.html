@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <ul>
+        <li></li>
+    </ul>
+</head>
+
+<body>
+    <script>
+        const p = document.querySelector("p")
+        const ul = document.querySelector("li")
+        async function getName() {
+            const bulbasaur = "bulbasaur"
+            const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${bulbasaur}`)
+            const data = await response.json()
+            
+            const pokemonObj = {
+                name: data.name,
+                base_experience: data.base_experience,
+                abilities: data.abilities,
+            }
+    
+            pokemonObj.abilities.forEach((el) =>{
+                if(el.is_hidden == false) {
+                    console.log(el)
+                } else {
+                    console.err("is_hidden is true")
+                }
+            })  
+
+            let p 
+        }
+        getName()
+    </script>
+</body>
+
+</html>
